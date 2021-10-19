@@ -11,11 +11,11 @@ import keras
 import json
 import pickle
 from keras.applications.vgg16 import VGG16
-from keras.applications.resnet50 import ResNet50, preprocess_input, decode_predictions
+from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input, decode_predictions
 from keras.preprocessing import image
 from keras.models import Model, load_model
 from keras.preprocessing.sequence import pad_sequences
-from keras.utils import to_categorical
+from tensorflow.keras.utils import to_categorical
 from keras.layers import Input, Dense, Dropout, Embedding, LSTM
 from keras.layers.merge import add
 
@@ -24,7 +24,7 @@ from keras.layers.merge import add
 
 
 model = load_model("model_weights/model_9.h5")
-model._make_predict_function()
+model.make_predict_function()
 
 # In[6]:
 
@@ -37,7 +37,7 @@ model_temp = ResNet50(weights="imagenet", input_shape=(224,224,3))
 
 # Create a new model, by removing the last layer (output layer of 1000 classes) from the resnet50
 model_resnet = Model(model_temp.input, model_temp.layers[-2].output)
-model_resnet._make_predict_function()
+model_resnet.make_predict_function()
 
 # In[8]:
 
@@ -121,10 +121,11 @@ def caption_this_image(image):
 
     enc = encode_image(image)
     caption = predict_caption(enc)
+    print(caption)
     
     return caption
 
-
+#caption_this_image("Engineer.jpg")
 # In[ ]:
 
 
