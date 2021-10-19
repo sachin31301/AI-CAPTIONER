@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, request
 
-import Caption_it
+#import Caption_it
 
 # __name__ == __main__
 app = Flask(__name__)
@@ -19,14 +19,14 @@ def marks():
 		path = "./static/{}".format(f.filename)# ./static/images.jpg
 		f.save(path)
 
-		caption = Caption_it.caption_this_image(path)
+		#caption = Caption_it.caption_this_image(path)
 		
-		result_dic = {
-		'image' : path,
-		'caption' : caption
-		}
+		#result_dic = {
+		#'image' : path,
+		#'caption' : caption
+		#}
 
-	return render_template("index.html", your_result =result_dic)
+	return render_template("index.html")
 
 if __name__ == '__main__':
 	# app.debug = True
